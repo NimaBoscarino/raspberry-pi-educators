@@ -35,13 +35,12 @@
 
         <h2>Download<br> & Install</h2>
         <ol class="downloads">
-          <li>Learner files (zip file): <a href="https://github.com/ladieslearningcode/tlc-scratch-for-edu/archive/master.zip">bit.ly/tlc-scratch-for-edu</a>
-            <ul>
-              <li>unzip the learner file (<em>extract all</em> if you’re on a PC)</li>
-              <li>open <em>slides-en.html</em> in the browser to view the slides</li>
-            </ul>
+          <li>
+            Install the Sublime text editor
           </li>
-          <li>Scratch Offline Editor: <a href="https://scratch.mit.edu/download">https://scratch.mit.edu/download</a></li>
+          <li>
+            Install <a href="https://github.com/randy3k/RemoteSubl">RemoteSubl</a> (with a mentor's help)
+          </li>
         </ol>
     </div>
 
@@ -55,7 +54,7 @@
     <section class="slide intro">
       <img class="logo" src="framework/img/tlc-logo-white.png" alt="Canada Learning Code logo">
       <h1 class="heading-bg">
-        <span>Scratch for <br>Educators</span>
+        <span>Raspberry Pi for <br>Educators</span>
       </h1>
 
       <ul>
@@ -96,16 +95,6 @@
       <script type="text/template">
         # Agenda
 
-        * Icebreaker (Unplugged)
-        * What is Code / Why Teach Coding?
-        * Intro to Scratch
-        * Interactive artwork activity
-        * Example Lesson Plan
-        * Assessment
-        * Lesson Planning
-        * Unplugged activity
-        * Next Steps
-
        </script>
     </section>
 
@@ -114,7 +103,7 @@
         # Learning Goals
 
         * To have a better understanding of what coding is, and why it's important.<!-- .element: class="delayed" -->
-        * To become more familiar with Scratch as a teaching tool.<!-- .element: class="delayed" -->
+        * To become more familiar with Raspberry Pi and Python as teaching tools.<!-- .element: class="delayed" -->
         * To experience the satisfaction that comes from being a builder and not just a consumer of technology.<!-- .element: class="delayed" -->
         * To become aware of the many (free) resources that are out there.<!-- .element: class="delayed" -->
         * To leave with a practical next step.<!-- .element: class="delayed" -->
@@ -206,240 +195,574 @@
 
     <section class="slide title" data-toc data-markdown>
       <script type="text/template">
-        # Teaching Tool: Scratch
+        # Teaching Tools: Python and Raspberry Pi
       </script>
     </section>
 
     <section class="slide two-col-list" data-markdown>
       <script type="text/template">
-        # Scratch
+        # Python
 
-        * Why Use Scratch?
-          * Community
-          * Online or offline
-          * Cost (free!)
-          * All the possibilities
-          * Concepts + practices
-        * <img src="framework/img/workshop/scratch-cat.png" width="400px" alt="Scatch logo">
-
-
-          ---
-        <div class="dropdown">
-          <button class="dropbtn">Attributions</button>
-          <div class="dropdown-content">
-            <a href="https://scratch.mit.edu"> Scratch</a>
-          </div>
+        * Why Use Python?
+        * <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Python-logo-notext.svg/1024px-Python-logo-notext.svg.png" width="400px" alt="Scatch logo">
 
       </script>
     </section>
+    <section class="slide two-col-list" data-markdown>
+        <script type="text/template">
+          # Raspberry Pi
+  
+          * Why Use Raspberry Pi?
+          * <img src="https://cdn.sparkfun.com//assets/parts/1/2/8/2/8/14643-Raspberry_Pi_3_B_-02.jpg" width="400px" alt="Scatch logo">
 
-    <section class="slide centered" data-markdown>
+  
+        </script>
+      </section>
+
+    <section class="slide" data-markdown>
       <script type="text/template">
-        # Scratch Editor
+        # Connecting to the Pi
 
-        <img src="framework/img/workshop/scratch-editor.png" alt="Scatch editor">
+        ##1. Plug in the Raspberry Pi, it'll blink for a little bit as it boots up
 
-        ## [https://scratch.mit.edu](https://scratch.mit.edu)
+        ##2. Open up a terminal on your computer (Terminal on Mac, other terminal on Linux, PuTTY for windows)
 
-          ---
-        <div class="dropdown">
-          <button class="dropbtn">Attributions</button>
-          <div class="dropdown-content">
-            <a href="https://scratch.mit.edu"> Scratch Editor</a>
-          </div>
+        ##3. In your terminal, type:
+        
+        ```
+        ssh -R 52698:localhost:52698 pi@[IP_ADDRESS]
+        ```
 
+        _Note! The IP address of the Pi will be provided to you_
+
+        ##4. Press enter!
+
+        ##5. Log in with the password `pi`
       </script>
     </section>
 
-    <section class="slide centered" data-markdown>
+    <section class="slide" data-markdown>
       <script type="text/template">
-        # Scratch Extensions
+        # Welcome to the terminal!
 
-        <img src="framework/img/workshop/scratch-extensions.png" alt="Scatch extensions">
+        We are now connected to the Raspberry Pi. We can use the terminal to talk to the Pi, so we can ask it to do things.
 
-          ---
-        <div class="dropdown">
-          <button class="dropbtn">Attributions</button>
-          <div class="dropdown-content">
-            <a href="https://scratch.mit.edu"> Scratch Editor</a>
-          </div>
+        `date` -> prints out the date
+
+        `cowsay hello!` -> prints out a cow to greet us
+
+        `ls` -> prints out all the files in the current folder
+
+        _Hmmm... what could `hello.py` be?_
+      </script>
+    </section>
+    
+    <section class="slide" data-markdown>
+      <script type="text/template">
+        # Running Scripts from the Terminal
+
+        If we want to get our Pi to do really complex things, we can write "scripts" using a programming language.
+        
+        The programming language that we'll use today is called Python.
+
+        Use `python3` to _run_ any `.py` file.
+
+        ```terminal
+        python3 hello.py
+        ```
+      </script>
+    </section>
+
+    <section class="slide" data-markdown>
+      <script type="text/template">
+        # Seeing the Code
+
+        Neat! Let's see how this script was written.
+
+        We need to open the script using a code editor.
+        
+        Run the command `rsubl hello.py` to open up the script in the Sublime editor.
+
+        <img height="200" src="https://cdn.dribbble.com/users/533705/screenshots/3811091/sublime-icon.png" />
+      </script>
+    </section>
+
+    <section class="slide" data-markdown>
+      <script type="text/template">
+        # Seeing the Code
+
+        This script lets us `print` some text to the screen. We can edit the code, save the page with <kbd>Ctrl + S</kbd>, and then run `python3 hello.py` in your terminal again.
+
+        We can print all kinds of things. Add the following line to the file:
+        
+        ```py
+        print(1 + 1)
+        ```
+
+        Wow, math!
+
+        <img src="https://media3.giphy.com/media/xUPGcqaVH1cDeKZTBS/giphy.gif?cid=790b76115d32c33a347a5245419807e7&rid=giphy.gif">
+      </script>
+    </section>    
+
+    <section class="slide" data-markdown>
+      <script type="text/template">
+        # Variables
+
+        Sometimes we want to save some values to use them later.
+
+        ```py
+        name = "Nima"
+        
+        print(name)
+        
+        big_number = 1 + 4 + 5 + 10000 + 4
+        
+        print(big_number)
+        ```
+        
+        We call this "creating a _variable_". Use variables to fill in blanks, sort of like Madlibs!
+        
+        ```py
+        name = "Nima"
+        ice_cream = "Salted Caramel"
+        message = "My name is " + name + ", and I like " + ice_cream
+
+        print(message)
+        ```
+      </script>
+    </section>       
+
+    <section class="slide" data-markdown>
+      <script type="text/template">
+        # What is code used for?
+
+        * Doing math<!-- .element: class="delayed" -->
+        * Making games<!-- .element: class="delayed" -->
+        * Creating websites<!-- .element: class="delayed" -->
+        * Controlling the physical world!<!-- .element: class="delayed" -->
+
+        <div>
+        Today we'll be using the `gpiozero` library for Python.
+        
+        [You can find the documentation for it here.](https://gpiozero.readthedocs.io/en/stable/recipes.html)
+
+        [Here is a chart for the pins on your Raspberry Pi](https://pinout.xyz/)
+        </div><!-- .element: class="delayed" -->
+
+      </script>
+    </section>     
+
+    <section class="slide" data-markdown>
+      <script type="text/template">
+        # Turn on an LED - Step 1
+
+        Goal: turn a small LED light on and off.
+
+        First things first: what is an LED?
+
+        <img src="https://images-na.ssl-images-amazon.com/images/I/41Kn4NpWoqL.jpg" />
+
+      </script>
+    </section>
+    
+    <section class="slide two-col-list" data-markdown>
+      <script type="text/template">
+        # Turn on an LED - Step 2
+        
+        * <img src="https://cdn.shopify.com/s/files/1/0176/3274/files/LEDs-BB400-1LED_bb_grande.png?6398700510979146820" />
+        * <div>
+          We need to wire up the LED to our Raspberry Pi using a breadboard.
+          
+          <p>_What is a breadboard?_<p>
+        </div>
+
 
       </script>
     </section>
 
     <section class="slide" data-markdown>
       <script type="text/template">
-        # Getting Started
+        # Turn on an LED - Step 3
 
-        ##Let’s all go to our Scratch Classroom: <a href="http://scratch.mit.edu/classes/45154/register/35d6f819da45414a898b18c1df030427">bit.ly/tlc-scratch-class</a>
+        We need some code to control the LED.
 
-        Create a new account to experience Scratch Classes from a student's point of view (follow instructions)
+        1. In your terminal, type `touch led_on.py` to create a new script.
+        2. Open it in your editor with `rsubl led_on.py`.
 
-        <img src="framework/img/workshop/scratch-class.png" alt="Screenshot of Scratch Class">
+        ```py
+        from gpiozero import LED
+        from time import sleep
+        
+        led = LED(17)
+        
+        led.on()
+        sleep(2)
+        led.off()
+        ```
+      
+        _Let's go through each of these lines of code!_
+      </script>
+    </section>    
 
+    <section class="slide" data-markdown>
+      <script type="text/template">
+        # Turn on an LED - Step 4
+
+        Time to test it out! Type the following command in your terminal to run our script:
+
+        ```terminal
+        python3 led_on.py
+        ```
+
+        *GIF*
       </script>
     </section>
 
-    <section class="slide" data-toc data-markdown>
+    <section class="slide" data-markdown>
       <script type="text/template">
-        #Let's Explore: Code Along Challenges
+        # Multiple LEDs - Step 1
 
-        <em>Click "Create" to get started!</em>
+        Let's control more than one LED at a time!
 
-        1. Make Scratch move
-        1. Make Scratch spin
-        1. Make Scratch say something when the space key is pressed
-        1. Add a new Sprite and backdrop
+        First, we'll have to wire up the rest of the LEDs.
 
-        There are many possible solutions. Play around!
+        <img src="https://gpiozero.readthedocs.io/en/stable/_images/traffic_lights_bb.svg" />
+      </script>
+    </section>
+    
+    <section class="slide" data-markdown>
+      <script type="text/template">
+        # Multiple LEDs - Step 2
+
+        In the terminal, create a new script with `touch led_loop.py`. Then open it with `rsubl led_loop.py`.
+
+        ```py
+        from gpiozero import LED
+        from signal import pause
+        from time import sleep
+        
+        led_1 = LED(17)
+        led_2 = LED(18)
+        led_3 = LED(19)
+        ```
       </script>
     </section>
 
+    <section class="slide" data-markdown>
+      <script type="text/template">
+        # Multiple LEDs - Step 3
+
+        Add the following code to your script. _Note!_ The indentation is important.
+
+        What we're using here is a "for loop". A loop allows us to run code multiple times. In this example, we're making the three lights blink on and off 3 times. Run `python3 led_loop.py` to see it happen!
+        
+        ```
+        for i in range(3):
+          led_1.on()
+          sleep(1)
+          led_1.off()
+          led_2.on()
+          sleep(1)
+          led_2.off()
+          led_3.on()
+          sleep(1)
+          led_3.off()
+      
+        pause()
+        ```
+      </script>
+    </section>    
+
     <section class="slide" data-toc data-markdown>
       <script type="text/template">
-        #Exercise: Make interactive artwork in Scratch
+        #What is Physical Computing?
 
-        Create a new project in Scratch ("Create" top left corner)
+        This is a good place to take a break from coding and have a bit of a discussion!
 
-        Let's take a look at the final <a href="https://scratch.mit.edu/projects/10015857">Paint with Gobo project</a> first.
-
-        <img src="framework/img/workshop/gobo-screenshot.png" alt="Gobo image">
+        - What does physical computing mean?
+        - What are some special considerations that we need to make?
+        - Why is it important?
       </script>
     </section>
-
-    <section class="slide" data-toc data-markdown>
+        
+    <section class="slide two-col-list" data-markdown>
       <script type="text/template">
-        # When you're finished...
+        # What exactly is Raspberry Pi?
 
-        ##Share your project
-
-        <img src="framework/img/workshop/share-project.png" alt="Share button top right corner">
-      </script>
-    </section>
-
-    <section class="slide" data-toc data-markdown>
-      <script type="text/template">
-        # When you're finished...
-
-        ##Add your project to the studio
-
-        <img src="framework/img/workshop/class-studio.png" width="900px" alt="Select a class studio">
-        <img src="framework/img/workshop/add-projects.png" width="900px" alt="Add project to studio">
-      </script>
-    </section>
-
-    <section class="slide" data-toc data-markdown>
-      <script type="text/template">
-        # Learning Outcomes
-
-        * We created digital artwork using code<!-- .element: class="delayed" -->
-        * We used loops to make things happen more than once<!-- .element: class="delayed" -->
-        * We used events to control when things happened in our projects<!-- .element: class="delayed" -->
-        * We used variables to track and store information<!-- .element: class="delayed" -->
-
-      </script>
-    </section>
-
-    <section class="slide" data-toc data-markdown>
-      <script type="text/template">
-        # Stretch and Scuttle
-
-        <img src="framework/img/workshop/crab.png" width="500px;" alt="Crab">
-
-
-          ---
-        <div class="dropdown">
-          <button class="dropbtn">Attributions</button>
-          <div class="dropdown-content">
-            <a href="https://github.com/twitter/twemoji"> Crab emoji by Twitter from Twitter Emoji for Everyone</a>
-          </div>
-
-      </script>
-    </section>
-
-    <section class="slide" data-toc data-markdown>
-      <script type="text/template">
-        # Learning Outcomes
-
-        * We can use the x-axis to move side-to-side (horizontally)<!-- .element: class="delayed" -->
-        * We can use the y-axis to move up-down (vertically)<!-- .element: class="delayed" -->
-        * We learned that coordinates on the computer are measured in pixels<!-- .element: class="delayed" -->
-
-        <em>We’ll need this information later!</em><!-- .element: class="delayed" -->
-
+        * - Example Projects:
+            - Temperature sensors
+            - Internet in a box
+            - Smart mirror
+            - Remote control cars
+        * <img src="https://www.toyhubz.com/wp-content/uploads/2019/06/1559790315_maxresdefault.jpg" />
       </script>
     </section>
 
     <section class="slide title" data-toc data-markdown>
       <script type="text/template">
-        # Self-Driving Cars
-        ## Example Lesson Plan
+        # PAIR activity: go online and do some research, then present to the class
+      </script>
+    </section>
+
+    <section class="slide title" data-toc data-markdown>
+      <script type="text/template">
+        # Code Along: Scavenger Hunt
       </script>
     </section>
 
     <section class="slide" data-toc data-markdown>
       <script type="text/template">
-        # Self-Driving Cars
+        # Scavenger Hunt
 
-        How do cars work? What if a car could drive by itself?
+        Goal: Become familiar with Python, Raspberry Pi wiring, and I/O
 
-        Companies like Chevrolet have actually created something called “self-driving cars” and are testing and training them today. Have you heard of this?
+        Scenario!! We're looking for the location of a secret stash of dog pictures. We'll have to hack our way through to find the stash.
 
-        <strong>We are learning about self-driving cars, and creating a game in Scratch to help us understand how they work.</strong>
+        <img src="https://images.pexels.com/photos/1345191/pexels-photo-1345191.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" />
       </script>
     </section>
 
-    <section class="slide centered" data-toc data-markdown>
+    <section class="slide two-col-list" data-toc data-markdown>
       <script type="text/template">
-        # How Do Self-Driving Cars work?
+        # Wiring up a button
 
-        <iframe width="560" height="315" src="https://www.youtube.com/embed/gEy91PGGLR0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        * Since we'll be dealing with buttons, let's learn about to hook up buttons to our Pi first.
+        Here is how we'll be wiring a button to our Raspberry Pi.
 
+        * <img src="https://gpiozero.readthedocs.io/en/stable/_images/button_bb.svg" />
       </script>
     </section>
 
-    <section class="slide centered" data-toc data-markdown>
+    <section class="slide" data-toc data-markdown>
       <script type="text/template">
-        # Example
+        # Using a button to run code
 
-        ## [bit.ly/self-driving-example](http://bit.ly/self-driving-example)
+        Create a new script (like we did before) called `button.py`. Open it up!
+        
+        ```py
+        from gpiozero import Button
+        from signal import pause
+        
+        def say_hello():
+            print("Hello world!")
+        
+        button = Button(2)
+        
+        button.when_pressed = say_hello
+        
+        pause()
+        ```      
+      </script>
+    </section>
 
-        <iframe allowtransparency="true" width="485" height="402" src="http://scratch.mit.edu/projects/embed/255968196/?autostart=false" frameborder="0" allowfullscreen></iframe>
+    
+    <section class="slide" data-toc data-markdown>
+      <script type="text/template">
+        # More buttons!
+
+        Let's hook up a second button to print something else.
+
+        <img src="https://gpiozero.readthedocs.io/en/stable/_images/music_box_bb.svg" />
+
+        ```py
+        from gpiozero import Button
+        from signal import pause
+
+        def say_hello():
+            print("Hello!")
+
+        def say_goodbye():
+            print("Bye!")
+
+        button1 = Button(2)
+        button2 = Button(3)
+
+        button1.when_pressed = say_hello
+        button2.when_pressed = say_goodbye
+
+        pause()
+        ```
+      </script>
+    </section>
+
+    <section class="slide" data-toc data-markdown>
+      <script type="text/template">
+        # Controlling an LED with a button
+
+        Let's hook up a button to control a single LED.
+        
+        <img src="https://gpiozero.readthedocs.io/en/stable/_images/led_button_bb.svg" />
+
+        In a new file, `button_led.py`:
+
+        ```py
+        from gpiozero import Button, LED
+        from signal import pause
+
+        led = LED(17)
+        button = Button(2)
+
+        led.source = button # this line of code says "let the LED be controlled by the button"
+
+        pause()
+        ```
 
       </script>
     </section>
 
     <section class="slide" data-toc data-markdown>
       <script type="text/template">
-        # Remix the Starter Project
+        # Fetching data with buttons!
 
-        <img src="framework/img/workshop/starter1.png" width="800px" alt="Select the project">
+        Now for the challenge! Let's use a button to fetch the first signal.
 
-        <img src="framework/img/workshop/starter2.png" width="800px" alt="Click  Remix">
+        The first signal lives at `https://morse-signal.herokuapp.com/signal`. 
+
+        In a new file, called `scavenger.py`:
+        
+        ```py
+        import requests
+        from gpiozero import Button
+        from signal import pause
+        
+        button = Button(2)
+        
+        def getSignal():
+          response = requests.get('https://morse-signal.herokuapp.com/signal')
+          message = response.json()
+          print(message)
+        
+        button.when_pressed = getSignal
+
+        pause()
+        ```
+        
       </script>
     </section>
 
     <section class="slide" data-toc data-markdown>
       <script type="text/template">
-        # Learning Outcomes
+        # What does the signal say?
 
-        * We gave the computer instructions to tell it what to do<!-- .element: class="delayed" -->
-        * We used conditional statements to control what happened in our projects<!-- .element: class="delayed" -->
-        * We used loops to make things happen more than once<!-- .element: class="delayed" -->
-        * We used events to control when things happened<!-- .element: class="delayed" -->
-        * We kept testing and debugging to make our projects better<!-- .element: class="delayed" -->
+        Hmm... the signal is saying something using [_Morse Code_](https://en.wikipedia.org/wiki/Morse_code)! We can display the signal using an LED, and then we'll have to translate it.
+
+        What are we going to need to do?
+
+        1. Make a `beep` function
+        2. Make a `long_beep` function
+        3. Make a `space` function
+        4. For each character in the signal, call the proper function.
       </script>
     </section>
 
     <section class="slide" data-toc data-markdown>
       <script type="text/template">
-        # Pick an Extension
+        # Making the first beep function
 
-        1. Write about what a future with self-driving cars could look like (e.g. How would it affect the environment?). Refer to General Motor’s “imagine” statements in their <a href="https://www.gm.com/content/dam/gm/en_us/english/selfdriving/gmsafetyreport.pdf">2018 Self-Driving Safety Report</a>.
-        1. Brainstorm possible scenarios that a self-driving car may face, then add the scenarios and solutions into your project in Scratch (e.g. an animal crossing the road).
-        1. Machine learning is an important part of training self-driving cars to know what to do in different scenarios. Spend time learning more about Machine Learning through Google’s Teachable Machine (https://teachablemachine.withgoogle.com/)
-        1. Build a self-driving car prototype (using whatever materials are handy - or sketch it out!). Label the sensors or any other important features, and share a Design Statement - including which design decisions you made, and why.
+        The `beep` function needs to turn an LED on for a short amount of time, and then turn it off again.
 
+        ```py
+        def beep():
+          led.on()
+          sleep(1)
+          led.off()
+          sleep(0.5)
+        ```
+
+        _What would the `long_beep` and `space` functions look like?_
+      </script>
+    </section>
+
+    <section class="slide" data-toc data-markdown>
+      <script type="text/template">
+      # Morse Function
+
+      We need a function that will translate each character of the message to the proper `beep!`.
+
+      ```py
+      def morse(message):
+        for letter in message:
+          if letter == "0":
+           beep()
+          elif letter == "1":
+           long_beep()
+          else:
+           space()
+      ```  
+      
+      _What does the `for` loop here do?_
+      </script>
+    </section>
+
+    <section class="slide" data-toc data-markdown>
+      <script type="text/template">
+      # Stretch!
+       
+      If you have time, you can connect the buzzer to the actually make a "beep" sound.
+      
+      Use the `gpiozero` documentation for this, and ask a mentor for help!
+      </script>
+    </section>    
+
+    <section class="slide" data-toc data-markdown>
+      <script type="text/template">
+      # Connecting it all together!
+
+      Now, instead of calling `print` in our `getSignal` function we can call `morse`!
+
+      - Replace `print` with `morse`
+
+      Press the button... and let's see what happens!
+        
+      _Beep beeeeeep beep beep beeeep!_
+
+      Now that we have our signal being performed we can translate to see what the signal means!
+
+      _Hint! Look online for how to translate morse code messages._
+      </script>
+    </section>
+
+    <section class="slide" data-toc data-markdown>
+      <script type="text/template">
+        # Second signal
+
+        Translating the morse code message gives us a secret "phone number" to call.
+        
+        We'll wire up a key pad and use it to "call" the number, maybe someone will pick up!
+
+        How do we wire this up?
+        <div style="display: flex; flex-direction: row">
+          <img height="300" src="https://www.jsumo.com/membrane-keypad-module-4x4-keypad-1718-65-B.jpg" />
+          <div style="margin: 30px;">
+            Connect to the following pins: 0, 5, 6,13, 19, 26, 20, 21
+            <p>Tip! Use [pinout.xyz](https://pinout.xyz) to find the proper pins.</p>
+          </div>
+        <div>
+      </script>
+    </section>
+
+    <section class="slide" data-toc data-markdown>
+      <script type="text/template">
+        # 4x4 Key Pad
+
+        Our last step is to use the funky 4x4 keypad to to call the secret number.
+
+        There is already a file on your Pi called `keypad.py`. When you've finished wiring up the keypad, run this script with `python3` to see what it does!
+        
+        Open it up using the `rsubl` command.
+
+        There's a bunch of code already! We'll make a small change.
+
+        ```py
+        def processKey(key):
+          print(key)
+          if (key == 'A'):
+            callNumber()
+          else:
+            phone.append(key)
+            print(phone)
+        ```
       </script>
     </section>
 
@@ -451,81 +774,178 @@
         ## 1 takeaway or action item
       </script>
     </section>
-
+    
     <section class="slide title" data-toc data-markdown>
       <script type="text/template">
-        # Assessment
+        # Project 2: Robot Buddy
+
+      </script>
+    </section>
+    
+    <section class="slide" data-toc data-markdown>
+      <script type="text/template">
+        Goal: Create your own robot with RGB LED eyes (controllable with key pad) and a waving arm (controllable with RED/GREEN buttons)
+        - crafting time
+        - design your robot!
+        - construction paper to fit over the breadboard
       </script>
     </section>
 
     <section class="slide" data-toc data-markdown>
       <script type="text/template">
-        # Assessment Considerations
+        The steps we'll go through for making our robot buddy are:
 
-        From http://scratched.gse.harvard.edu/guide
-
-        1. Is the assessment focused on process (formative), product (summative), or both?
-        1. Is the assessment designed by students, teachers, or co-designed?
-        1. Who contributes to completing the assessment? Teachers, students, or both?
-
-        <em>Discuss in groups, using an example lesson plan from today.</em>
-
-      </script>
-    </section>
-
-    <section class="slide two-col-list" data-toc data-markdown>
-      <script type="text/template">
-        # How do we Assess Learning in Scratch?
-
-        * <strong style="color:#ffce03;">APPROACH</strong>
-          * Focus on the process  (reflection + discussion)
-          * Assessment AS learning
-          * Co-created success criteria
-          * Consider the 5 C’s (Communication, Collaboration, Creativity, Critical Thinking, Craftsmanship)
-        * <strong style="color:#ffce03;">TOOLS</strong>
-          * Comments!
-          * Design journals (http://bit.ly/DJexample)
-          * Computational Thinking rubric (http://bit.ly/CTrubric)
-
-      </script>
-    </section>
-
-    <section class="slide title" data-toc data-markdown>
-      <script type="text/template">
-        # Lesson Planning
-      </script>
-    </section>
-
-<!-- temp slide-->
-    <section class="slide" data-toc data-markdown>
-      <script type="text/template">
-        # August's Theme is...
-        ## POPULATION
-
-        Population includes all individuals that live in that certain area. But why is that more people live in some places and less in others? What happens when more people live in the same amount of space?
-
-        **Create a lesson plan about migration.**
-
-        Share your project using #clcCode4Change. More info [here](https://www.canadalearningcode.ca/code-can-change-the-world/).
-
+        - Connect the eyes
+        - Set up a little waving arm
+        - STRETCH: Control the eyes with the key pad
+        - Demo!
       </script>
     </section>
 
     <section class="slide" data-toc data-markdown>
       <script type="text/template">
-        # Scratch-Inspired Approaches
-
-        <strong>Create</strong>: Make your own lesson from "scratch" (hehe)
-
-        <strong>Remix</strong>: Search a topic at https://scratch.mit.edu/ and use an existing activity as a starting point (e.g. "measurement")
-
-        <strong>Explore</strong>: Choose an existing lesson plan. Check out https://www.canadalearningcode.ca/lesson-plans/ (e.g. <a href="https://www.canadalearningcode.ca/lessons/immigration-experience/">"Immigration Experience"</a>)
-
-        <hr>
-        ###Optional: Use this lesson plan template: http://bit.ly/tlc-lesson-plan-template (Create a copy in Google Drive or use the sections as guidelines)
-
+        We've seen how to connect a regular LED to our Raspberry Pi, but we'll be using special LEDs for our Robot Buddy's eyes. A regular LED only needs one input wire to let it know whether it should be ON or OFF. The LEDs that we'll use for the eyes are RGB LEDs.
+        
+        ## What does RGB mean?
       </script>
     </section>
+ 
+    <section class="slide" data-toc data-markdown>
+      <script type="text/template">
+        RGB LEDs will need 3 input wires:
+
+        - 1 wire for the Red signal
+        - 1 wire for the Green signal
+        - 1 wire for the Blue signal
+        
+        These LEDs will still have 1 ground wire.
+      </script>
+    </section>
+    
+    <section class="slide" data-toc data-markdown>
+      <script type="text/template">
+        # Wiring up an RGB LED
+
+        This takes a bit of time!
+
+        <img src="https://gpiozero.readthedocs.io/en/stable/_images/rgb_led_bb.svg" />
+      </script>
+    </section>
+
+    <section class="slide" data-toc data-markdown>
+      <script type="text/template">
+        # Controlling an RGB LED
+
+        Great, now that this LED is wired up we'll want to pick what colour should be displayed.
+
+        Create a new script called `robot_buddy.py`.
+        
+        We can control this first eye by picking how _red_, _green_, and _blue_ it should be.
+        
+        ```py
+        # import RGBLED from gpiozero
+
+        left_eye = RGBLED(red=9, green=10, blue=11)
+        
+        left_eye.red = 1  # full red
+        sleep(1)
+        left_eye.red = 0.5  # half red
+        sleep(1)
+        
+        left_eye.color = (0, 1, 0)  # full green
+        ```
+      </script>
+    </section>
+
+    <section class="slide" data-toc data-markdown>
+      <script type="text/template">
+        # Controlling a second RGB LED
+
+        The second eye will be wired up similarly, but we'll connect it to different pins on the Pi.
+
+        Challenge! Use the Raspberry Pi "pinout" guide to figure out what pins should be used for this second LED.
+      </script>
+    </section>
+
+    <section class="slide" data-toc data-markdown>
+      <script type="text/template">
+        # Servo Motors
+        
+        We can use the Raspberry Pi to control servo motors!
+
+        We can use motors for all kinds of stuff. Today we'll be using a motor to control our robot buddy's arm.
+        
+        <img src="http://phi-education.com/store/image/cache/data/electronics/motors_actuators/micro_servo_motor_sg90/main-750x500.png" />
+      </script>
+    </section>
+
+    <section class="slide" data-toc data-markdown>
+      <script type="text/template">
+        # Wire up the motor
+        
+        As usual, we'll need to wire up the motor.
+        <div style="display: flex; flex-direction: row; margin: 25px">
+            <img height="400px" src="https://www.raspberrypi-spy.co.uk/wp-content/uploads/2018/02/Basic-Servo-Example.png" />
+            
+            <img style="margin: 20px" src="https://www.raspberrypi-spy.co.uk/wp-content/uploads/2017/12/servo_colour_codes.png" />
+        </div>
+      </script>
+    </section>
+
+    <section class="slide" data-toc data-markdown>
+        <script type="text/template">
+          # Controlling the motor
+       
+          The `gpiozero` library lets us control this kind of servo by setting the direction that it should be spinning in.
+
+          ```py
+          from gpiozero import Servo, Button
+          from time import sleep
+                    
+          servo = Servo(17)
+          
+          servo.value = 1
+          sleep(2)
+          servo.value = -1
+          sleep(2)
+          ```
+        </script>
+      </section>
+  
+      <section class="slide" data-toc data-markdown>
+        <script type="text/template">
+          # Controlling the motor - Part 2
+        
+          We can also use buttons to control the servo!
+
+          ```py
+          # ... code above
+
+          left_button = Button(2)
+          right_button = Button(3)
+
+          servo = Servo(17)
+
+          def left():
+              servo.value = -1
+
+          def right():
+              servo.value = 1
+
+          def clear():
+              servo.value = None
+
+          left_button.when_pressed = left
+          right_button.when_pressed = right
+
+          left_button.when_released = clear
+          right_button.when_released = clear
+
+          pause()
+          ```
+        </script>
+      </section>      
+  
 
     <section class="slide centered" data-toc data-markdown>
       <script type="text/template">
@@ -541,107 +961,6 @@
             <a href="https://giphy.com/gifs/cartoon-rainbow-spongebob-SKGo6OYe24EBG"> Spongebob gif</a>
           </div>
 
-      </script>
-    </section>
-
-    <section class="slide two-col-list" data-toc data-markdown>
-      <script type="text/template">
-        # Deconstructing Code
-
-        * <img src="framework/img/workshop/magnify.png" width="400px;" alt="magnifying glass">
-        * INSTRUCTIONS:
-          * Each person take a sheet (#1-6)
-          * Take turns interpreting your sheet + running the code by acting it out (→ Group participation may be required)
-          * Unsure about how to act it out? Ask your group for help and debug together!
-
-
-          ---
-        <div class="dropdown">
-          <button class="dropbtn">Attributions</button>
-          <div class="dropdown-content">
-            <a href="https://github.com/twitter/twemoji"> Magnifying glass emoji by Twitter from Twitter Emoji for Everyone</a>
-          </div>
-
-      </script>
-    </section>
-
-    <section class="slide" data-toc data-markdown>
-      <script type="text/template">
-        #Deconstructing Code
-
-        <strong>Finished?</strong>
-
-        Check the solution: [bit.ly/de-code-solution](http://bit.ly/de-code-solution)
-
-        * How does this compare to our acted-out interpretations?
-        * Notice any bugs? (see #4)
-        * What does this tell us about programming?
-
-      </script>
-    </section>
-
-    <section class="slide" data-toc data-markdown>
-      <script type="text/template">
-        #Stretch Goal: Debugging
-
-        What is a "bug" in coding?
-
-        <strong>Debugging Strategies</strong>
-
-        * Iterating/testing each step
-        * Isolating code
-        * Keeping in mind how computers work!
-
-        <strong>Resources:</strong>
-
-        * FAQ + Code Along ‘Challenges’ solutions: http://bit.ly/scratch-challenge-solutions-doc
-        * Scratch debugging exercises (next slide)
-
-      </script>
-    </section>
-
-    <section class="slide" data-toc data-markdown>
-      <script type="text/template">
-        #Stretch Goal: Debugging
-
-        Try some debugging activities at http://bit.ly/ScratchDebug
-
-        ### Solutions can be found under ‘Remixes’ (bottom right)
-
-        <br>
-        <img src="framework/img/workshop/debugging.png" alt="Debugging Code">
-
-
-          ---
-        <div class="dropdown">
-          <button class="dropbtn">Attributions</button>
-          <div class="dropdown-content">
-            <a href="https://www.embarcadero.com/images/free-tools/REST_Debugger_Logo_256x256px.png"> Debugging logo</a>
-          </div>
-      </script>
-    </section>
-
-    <section class="slide" data-toc data-markdown>
-      <script type="text/template">
-        #Next steps
-        ##Together we'll change the world, one coding lesson at a time.
-
-        Some Ideas:
-
-        * Create a <a href="https://scratch.mit.edu/educators/">Scratch Teacher account</a>
-        * Schedule an unplugged activity into your weekly teaching plan
-        * Dedicate a day of the week to coding. E.g. Tech Tuesday
-        * Share your own coding lessons with the Teachers Learning Code community (<a href="mailto:content@canadalearningcode.ca">email us!</a>)
-        * Have the <a href="http://codemobile.rocks">Code Mobile</a> visit your classroom to facilitate a lesson OR support as you teach
-
-      </script>
-    </section>
-
-    <section class="slide centered" data-toc data-markdown>
-      <script type="text/template">
-        # Share your next step on a post-it note
-
-        <img src="framework/img/workshop/postit.jpg" width="400px" alt="Post-it notes on a wall">
       </script>
     </section>
 
